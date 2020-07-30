@@ -65,4 +65,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log('Base de datos creada y lista!');
   }
+
+  //Cuando el formulario se envía
+  form.addEventListener('submit', agregarDatos);
+
+  function agregarDatos(e) {
+    e.preventDefault();
+
+    //Creamos el objeto
+    const nuevaCita = {
+      mascota: nombreMascota.value,
+      cliente: nombreCliente.value,
+      telefono: telefono.value,
+      fecha: fecha.value,
+      hora: hora.value,
+      sintomas: sintomas.value,
+    }
+    console.log(nuevaCita);
+  }
 });
