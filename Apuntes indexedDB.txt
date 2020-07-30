@@ -6,3 +6,5 @@
 * En este metodo (onupgradeneeded), el evento (e) corresponde a la base de datos.
 * Para comenzar a agregar los campos en la base de datos (crear Schema con el metodo onupgradeneeded)
   debemos crear lo que se conoce como el ObjectStore. Este toma dos parametros: [Nombre de la BD] y las [Opciones - se pasan como objeto].
+
+* El cursor existe siempre y cuando hayan registros
