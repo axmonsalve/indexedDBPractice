@@ -134,6 +134,13 @@ document.addEventListener('DOMContentLoaded', () => {
           <p class="font-weight-bold">Síntomas: <span class="font-weight-normal">${cursor.value.sintomas}</span></p>
         `;
 
+        //Boton de borrar
+        const botonBorrar = document.createElement('button');
+        botonBorrar.classList.add('borrar', 'btn', 'btn-danger');
+        botonBorrar.innerHTML = '<span aria-hidden="true">x</span> Borrar';
+        botonBorrar.onclick = borrarCita;
+        citaHTML.appendChild(botonBorrar);
+
         //Append en el padre
         citas.appendChild(citaHTML);
 
@@ -145,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
           //Cuando no hay registros (no hay cursor)
           headingAdministra.textContent = 'Agrega citas para comenzar'
           let listado = document.createElement('p');
-          listado.classList.add('text-center');
+          listado.classList.add('text-center', 'bg-info', 'text-white', 'py-2', 'h4');
           listado.textContent = 'No hay registros';
           citas.appendChild(listado);
         } else {
@@ -154,5 +161,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       }
     }
+  }
+
+  function borrarCita(e) {
+    //Traigo el id (con traversing) del list item clickeado mediante el atributo data. 
+    let citaID = e.target.parentElement.getAttribute('data-cita-id');
   }
 });
