@@ -1,0 +1,8 @@
+* indexedDB debe esperar a que carge el DOM
+* El esquema de la base de datos, es decir los campos, deben crearse en un nuevo metodo
+  ya que cada si se crea en el evento DOMContenLoaded cada vez que se cargue la pagina
+  volverán a crearse y eso no es lo que queremos. Para esto ocupamos un metodo que se ejecuta
+  solamente una vez, éste método se llama onupgradeneeded.
+* En este metodo (onupgradeneeded), el evento (e) corresponde a la base de datos.
+* Para comenzar a agregar los campos en la base de datos (crear Schema con el metodo onupgradeneeded)
+  debemos crear lo que se conoce como el ObjectStore. Este toma dos parametros: [Nombre de la BD] y las [Opciones - se pasan como objeto].
