@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
           //Cuando no hay registros (no hay cursor)
           headingAdministra.textContent = 'Agrega citas para comenzar'
           let listado = document.createElement('p');
-          listado.classList.add('text-center', 'bg-info', 'text-white', 'py-2', 'h4');
+          listado.classList.add('text-center', 'bg-light', 'text-muted', 'py-2', 'h4', 'rounded');
           listado.textContent = 'No hay registros';
           citas.appendChild(listado);
         } else {
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //Cuando no hay registros (no hay cursor)
         headingAdministra.textContent = 'Agrega citas para comenzar'
         let listado = document.createElement('p');
-        listado.classList.add('text-center', 'bg-info', 'text-white', 'py-2', 'h4');
+        listado.classList.add('text-center', 'bg-light', 'text-info', 'py-2', 'h4');
         listado.textContent = 'No hay registros';
         citas.appendChild(listado);
       } else {
