@@ -165,6 +165,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function borrarCita(e) {
     //Traigo el id (con traversing) del list item clickeado mediante el atributo data. 
-    let citaID = e.target.parentElement.getAttribute('data-cita-id');
+    let citaID = Number(e.target.parentElement.getAttribute('data-cita-id'));
+
+    //Creamos la transaccion para eliminar
+    //En indexedDb se utilizan las transacciones
+    let transaction = DB.transaction(['citas'], 'readwrite');
+    let objectStore = transaction.objectStore('citas');
+
+    let request = objectStore.delete(citaID);
+
+    //Quitar del DOM el registro
+    transaction.oncomplete = () => {
+      //Hacemos traversing para eliminar
+      e.target.parentElement.parentElement.removeChild(e.target.parentElement);
+      console.log(`Se eliminó la cita con el id ${citaID}`);
+      if (!citas.firstChild) {
+        //Cuando no hay registros (no hay cursor)
+        headingAdministra.textContent = 'Agrega citas para comenzar'
+        let listado = document.createElement('p');
+        listado.classList.add('text-center', 'bg-info', 'text-white', 'py-2', 'h4');
+        listado.textContent = 'No hay registros';
+        citas.appendChild(listado);
+      } else {
+        headingAdministra.textContent = 'Administra las citas';
+      }
+    }
   }
 });
