@@ -81,6 +81,25 @@ document.addEventListener('DOMContentLoaded', () => {
       hora: hora.value,
       sintomas: sintomas.value,
     }
-    console.log(nuevaCita);
+    // console.log(nuevaCita);
+
+    //En indexedDb se utilizan las transacciones
+    let transaction = DB.transaction(['citas'], 'readwrite');
+    let objectStore = transaction.objectStore('citas');
+    // console.log(objectStore);
+    let request = objectStore.add(nuevaCita);
+
+    console.log(request);
+    request.onsuccess = () => {
+      form.reset();
+    }
+
+    transaction.oncomplete = () => {
+      console.log('Cita agendada');
+    }
+
+    transaction.onerror = () => {
+      console.log('Hubo un error');
+    }
   }
 });
